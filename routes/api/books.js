@@ -1,12 +1,19 @@
-const router = require("express").Router();
-const bookController = require("../../controllers/bookController");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-// Matches with "/api/books"
-router.route("/")
-  FIXME: // SEE activity 11-Stu_ReactRouter/Solved
+const bookSchema = new Schema({
 
-// Matches with "/api/books/:id"
-router
-FIXME: // SEE activity 11-Stu_ReactRouter/Solved
+  googleId: String,
+  title: { type: String, required: true},
+  subtitle: String,
+  authors: Array,
+  description: String,
+  image: String,
+  link: String,
+  date: {type: Date, default:Date.now}
 
-module.exports = router;
+});
+
+const Book = mongoose.model("Book", bookSchema);
+
+module.exports = Book;
