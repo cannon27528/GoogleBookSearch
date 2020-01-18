@@ -1,19 +1,13 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const router = require("express").Router();
+const booksController = require("../../controllers/googleController");
 
-const bookSchema = new Schema({
+// Matches with "/api/google"
+router.route("/")
+  .get(booksController.findAll)
+  .post(booksController.create)
+router.route("/:id")
+.get(booksController.findbyID)
+  .put(booksController.update)
+  .delete(booksController.remove)
 
-  googleId: String,
-  title: { type: String, required: true},
-  subtitle: String,
-  authors: Array,
-  description: String,
-  image: String,
-  link: String,
-  date: {type: Date, default:Date.now}
-
-});
-
-const Book = mongoose.model("Book", bookSchema);
-
-module.exports = Book;
+module.exports = router;
